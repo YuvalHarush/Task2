@@ -23,7 +23,7 @@ int main()
     printf ("p- Print all accountin the banks\n");
     printf ("e - close all accounts and end terminal\n");
     while (b!=0){
-    char activity; int amount; int acount;
+    char activity; double amount; int acount;
     printf ("Enter an activation code:, for a list of a all activation codes type 'm' \n");
     scanf (" %c", &activity);
     if (activity== 'e'){
@@ -33,37 +33,49 @@ int main()
     else if (activity== 'o' ){
         printf("In order to open your new acount you will need to enter a sum of money\n");
         printf("Please enter the amount you want to lay in your account\n");
-        scanf(" %d", &amount);
+        if (scanf(" %lf", &amount)!=1){
+            return printf("invalid input\n");
+        }
         OpenAccount (Bank, amount);
         printf("\n");
     }
     else if (activity== 'b'){
         printf ("Please state your acount numbe\n");
-        scanf (" %d", &acount);
+        if (scanf (" %d", &acount)!=1){
+           return printf("invalid input\n"); 
+        }
         Money (Bank, acount);
         printf("\n");
     }
     else if (activity== 'd'){
-        printf ("Please state your acount number and the new amount of dollars you want it to have:\n");
-        scanf (" %d%d", &acount, &amount);
+        printf ("Please state your acount number, than the new amount of dollars you want it to have:\n");
+         if (scanf (" %d%lf", &acount, &amount)!=2){
+           return printf("invalid input"); 
+        }
         Update (Bank, acount, amount);
         printf("\n");
     }
     else if (activity== 'w'){
-        printf ("Please state your acount number and the sum of dollars you want to withdraw");
-        scanf (" %d%d", &acount, &amount);
+        printf ("Please state your acount number, than the amount of dollars you want to withdraw\n");
+         if (scanf (" %d%lf", &acount, &amount)!=2){
+           return printf("invalid input\n"); 
+        }
         Withdraw (Bank, acount, amount);
         printf("\n");
     }
     else if (activity== 'c'){
         printf ("Please state the acount number you want to close\n");
-        scanf (" %d", &acount);
+         if (scanf (" %d", &acount)!=1){
+           return printf("invalid input\n"); 
+        }
         Close (Bank, acount);
         printf("\n");
     } 
     else if (activity== 'i'){
-        printf ("Please state the amount interest you want to add the all bank's accounts by percentage");
-        scanf (" %d", &amount);
+        printf ("Please state the amount interest you want to add the all bank's accounts by percentage\n");
+         if (scanf (" %lf", &amount)!=1){
+           return printf("invalid input\n"); 
+        }
         Interest (Bank, amount);
         printf("\n");
     }
@@ -72,7 +84,7 @@ int main()
         printf("\n");
     }
     else if (activity== 'm'){
-        printf ("All codes:\n");
+    printf ("All codes:\n");
     printf ("o - Open an acount, deposit is needed\n");
     printf ("b - Check acount's status, an acount number is needed\n");
     printf ("d - Update the amount of moeny in your bank account, an acount number and amount is needed\n");
